@@ -1,9 +1,7 @@
 /**두 값의 앝은 비교를 수행합니다. */
 export function shallowEquals<T>(objA: T, objB: T): boolean {
   //기본자료형에 대한 처리
-  if (objA === objB) {
-    return true;
-  }
+  if (objA === objB) return true;
 
   //null인경우, object가 아닌 경우 처리
   if (
