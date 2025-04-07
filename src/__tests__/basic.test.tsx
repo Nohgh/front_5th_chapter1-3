@@ -115,8 +115,6 @@ describe("Chapter 1-3 기본과제: hooks 구현하기 > ", () => {
           const [, rerender] = useState({});
           // useRef로 변경해서 테스트하면 통과됩니다. useMyRef를 useRef와 똑같이 동작하도록 구현해보세요.
           const ref = useRef<HTMLDivElement | null>(null);
-          console.log("refs.add전");
-          console.log("");
           refs.add(ref); //ref는 set
 
           return (
@@ -154,7 +152,6 @@ describe("Chapter 1-3 기본과제: hooks 구현하기 > ", () => {
               <button
                 onClick={() => {
                   ref.current += 1;
-                  console.log("ref를 증가시킨 값:", ref);
                   // ref 값만 변경하고 리렌더링하지 않음
                 }}
               >
@@ -179,7 +176,6 @@ describe("Chapter 1-3 기본과제: hooks 구현하기 > ", () => {
         expect(getByTestId("ref-value").textContent).toBe("Ref Value: 0");
 
         // ref 값 변경
-        console.log("값 변경");
         fireEvent.click(getByText("Increment Ref"));
 
         // ref 값이 변경되었지만 리렌더링은 발생하지 않음
@@ -225,7 +221,6 @@ describe("Chapter 1-3 기본과제: hooks 구현하기 > ", () => {
       beforeEach(() => {
         mockFactory.mockClear();
       });
-
       it("useMemo 메모이제이션 테스트: 의존성의 값들이 변경될 때 재계산", () => {
         const ref: ComponentProps<typeof TestComponent>["ref"] = {
           current: null,
@@ -234,7 +229,6 @@ describe("Chapter 1-3 기본과제: hooks 구현하기 > ", () => {
         // 의존성: [42]
         render(<TestComponent ref={ref} initialDeps={[42]} />);
         expect(mockFactory).toHaveBeenCalledTimes(1);
-
         // 의존성을 다시 [42] 로 변경 -> 재계산 되지 않아야 함
         act(() => {
           ref.current?.updateDeps([42]);
