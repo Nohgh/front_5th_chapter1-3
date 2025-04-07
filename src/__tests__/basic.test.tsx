@@ -115,7 +115,9 @@ describe("Chapter 1-3 기본과제: hooks 구현하기 > ", () => {
           const [, rerender] = useState({});
           // useRef로 변경해서 테스트하면 통과됩니다. useMyRef를 useRef와 똑같이 동작하도록 구현해보세요.
           const ref = useRef<HTMLDivElement | null>(null);
-          refs.add(ref);
+          console.log("refs.add전");
+          console.log("");
+          refs.add(ref); //ref는 set
 
           return (
             <div ref={ref}>
@@ -123,12 +125,11 @@ describe("Chapter 1-3 기본과제: hooks 구현하기 > ", () => {
             </div>
           );
         };
-
         const { getByText } = render(
           <>
             <UseMyRefTest label="rerender1" />
             <UseMyRefTest label="rerender2" />
-          </>,
+          </>
         );
 
         act(() => {
@@ -146,7 +147,6 @@ describe("Chapter 1-3 기본과제: hooks 구현하기 > ", () => {
           const [, setForceUpdate] = useState({});
           const ref = useRef(0);
           renderCount++;
-
           return (
             <>
               <div data-testid="render-count">Render Count: {renderCount}</div>
@@ -154,6 +154,7 @@ describe("Chapter 1-3 기본과제: hooks 구현하기 > ", () => {
               <button
                 onClick={() => {
                   ref.current += 1;
+                  console.log("ref를 증가시킨 값:", ref);
                   // ref 값만 변경하고 리렌더링하지 않음
                 }}
               >
@@ -178,6 +179,7 @@ describe("Chapter 1-3 기본과제: hooks 구현하기 > ", () => {
         expect(getByTestId("ref-value").textContent).toBe("Ref Value: 0");
 
         // ref 값 변경
+        console.log("값 변경");
         fireEvent.click(getByText("Increment Ref"));
 
         // ref 값이 변경되었지만 리렌더링은 발생하지 않음
@@ -652,7 +654,7 @@ describe("Chapter 1-3 기본과제: hooks 구현하기 > ", () => {
       it("깊은 객체 비교를 수행해야 한다", () => {
         const DeepMemoizedComponent = deepMemo(TestComponent);
         const { rerender } = render(
-          <DeepMemoizedComponent value={{ a: { b: 1 } }} />,
+          <DeepMemoizedComponent value={{ a: { b: 1 } }} />
         );
 
         expect(TestComponent).toHaveBeenCalledTimes(1);
@@ -667,7 +669,7 @@ describe("Chapter 1-3 기본과제: hooks 구현하기 > ", () => {
       it("깊은 배열 비교를 수행해야 한다", () => {
         const DeepMemoizedComponent = deepMemo(TestComponent);
         const { rerender } = render(
-          <DeepMemoizedComponent value={[1, [2, 3]]} />,
+          <DeepMemoizedComponent value={[1, [2, 3]]} />
         );
 
         expect(TestComponent).toHaveBeenCalledTimes(1);
