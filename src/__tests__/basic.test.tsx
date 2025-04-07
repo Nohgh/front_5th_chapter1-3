@@ -127,7 +127,7 @@ describe("Chapter 1-3 기본과제: hooks 구현하기 > ", () => {
           <>
             <UseMyRefTest label="rerender1" />
             <UseMyRefTest label="rerender2" />
-          </>
+          </>,
         );
 
         act(() => {
@@ -465,7 +465,6 @@ describe("Chapter 1-3 기본과제: hooks 구현하기 > ", () => {
         const ref: ComponentProps<typeof TestComponent>["ref"] = {
           current: null,
         };
-
         // 배열의 첫 번째 인자에 대해서만 값이 같은지 검사하는 equals 주입
         const equals = (a: unknown[], b: unknown[]) => a[0] === b[0];
         render(<TestComponent ref={ref} initialDeps={[42]} equals={equals} />);
@@ -648,7 +647,7 @@ describe("Chapter 1-3 기본과제: hooks 구현하기 > ", () => {
       it("깊은 객체 비교를 수행해야 한다", () => {
         const DeepMemoizedComponent = deepMemo(TestComponent);
         const { rerender } = render(
-          <DeepMemoizedComponent value={{ a: { b: 1 } }} />
+          <DeepMemoizedComponent value={{ a: { b: 1 } }} />,
         );
 
         expect(TestComponent).toHaveBeenCalledTimes(1);
@@ -663,7 +662,7 @@ describe("Chapter 1-3 기본과제: hooks 구현하기 > ", () => {
       it("깊은 배열 비교를 수행해야 한다", () => {
         const DeepMemoizedComponent = deepMemo(TestComponent);
         const { rerender } = render(
-          <DeepMemoizedComponent value={[1, [2, 3]]} />
+          <DeepMemoizedComponent value={[1, [2, 3]]} />,
         );
 
         expect(TestComponent).toHaveBeenCalledTimes(1);

@@ -9,10 +9,7 @@ export function useMemo<T>(
 ): T {
   const savedDeps = useRef<DependencyList | null>(null);
   const savedFactory = useRef<T | null>(null);
-
-  if (savedDeps === null) savedFactory.current = factory();
-
-  if (!_equals(savedDeps.current, _deps)) {
+  if (savedDeps.current === null || !_equals(savedDeps.current, _deps)) {
     savedFactory.current = factory();
   }
 
