@@ -25,8 +25,12 @@ export default tseslint.config(
         "warn",
         { allowConstantExport: true },
       ],
+      "prettier/prettier": [
+        "error",
+        { endofLine: "auto", tarilingComma: "all" },
+      ],
     },
   },
   eslintPluginPrettier,
-  eslintConfigPrettier
+  eslintConfigPrettier,
 );
