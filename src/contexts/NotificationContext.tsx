@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { Notification } from "../types";
+import { useCallback } from "../@lib";
 
 export interface NotificationContextType {
   notifications: Notification[];
@@ -17,20 +18,23 @@ export const NotificationProvider = ({
 }) => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
 
-  const addNotification = (message: string, type: Notification["type"]) => {
-    const newNotification: Notification = {
-      id: Date.now(),
-      message,
-      type,
-    };
-    setNotifications((prev) => [...prev, newNotification]);
-  };
+  const addNotification = useCallback(
+    (message: string, type: Notification["type"]) => {
+      const newNotification: Notification = {
+        id: Date.now(),
+        message,
+        type,
+      };
+      setNotifications((prev) => [...prev, newNotification]);
+    },
+    [],
+  );
 
-  const removeNotification = (id: number) => {
+  const removeNotification = useCallback((id: number) => {
     setNotifications((prev) =>
       prev.filter((notification) => notification.id !== id),
     );
-  };
+  }, []);
 
   return (
     <NotificationContext.Provider
@@ -45,7 +49,9 @@ export const NotificationProvider = ({
 export const useNotificationContext = () => {
   const context = useContext(NotificationContext);
   if (context === undefined) {
-    throw new Error("useNotiContext must be used within an __");
+    throw new Error(
+      "useNotiContext must be used within an NotificationProvider",
+    );
   }
   return context;
 };

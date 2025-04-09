@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { User } from "../types";
 import { useNotificationContext } from "./NotificationContext";
+import { useMemo } from "../@lib";
 
 export interface AuthContextType {
   user: User | null;
@@ -14,6 +15,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
 
   const { addNotification } = useNotificationContext();
+
   const login = (email: string) => {
     setUser({ id: 1, name: "홍길동", email });
     addNotification("성공적으로 로그인되었습니다", "success");
@@ -24,11 +26,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     addNotification("로그아웃되었습니다", "info");
   };
 
-  const value = {
-    user,
-    login,
-    logout,
-  };
+  const value = useMemo(
+    () => ({
+      user,
+      login,
+      logout,
+    }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [user],
+  );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 

@@ -1,11 +1,11 @@
 import { Header, ItemList, ComplexForm } from "./components";
 import { NotificationSystem } from "./components/NotificationSystem";
 import { useThemeContext } from "./contexts";
-import { useItems } from "./hooks/useItems";
+import { useItemContext } from "./contexts/ItemContext";
 
 export const AppContent = () => {
   const { theme } = useThemeContext();
-  const { items, addItems } = useItems();
+  const { items, addItems } = useItemContext();
 
   return (
     <div
