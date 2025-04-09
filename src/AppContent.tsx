@@ -1,6 +1,4 @@
-import { ComplexForm } from "./components/ComplexForm";
-import { Header } from "./components/Header";
-import { ItemList } from "./components/ItemList";
+import { Header, ItemList, ComplexForm } from "./components";
 import { NotificationSystem } from "./components/NotificationSystem";
 import { useThemeContext } from "./contexts";
 import { useItems } from "./hooks/useItems";

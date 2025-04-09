@@ -6,10 +6,9 @@ export interface NotificationContextType {
   addNotification: (message: string, type: Notification["type"]) => void;
   removeNotification: (id: number) => void;
 }
-// eslint-disable-next-line react-refresh/only-export-components
-export const NotificationContext = createContext<
-  NotificationContextType | undefined
->(undefined);
+const NotificationContext = createContext<NotificationContextType | undefined>(
+  undefined,
+);
 
 export const NotificationProvider = ({
   children,
