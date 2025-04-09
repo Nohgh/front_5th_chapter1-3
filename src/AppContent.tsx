@@ -1,7 +1,6 @@
 import { Header, ItemList, ComplexForm } from "./components";
 import { NotificationSystem } from "./components/NotificationSystem";
-import { useThemeContext } from "./contexts";
-import { useItemContext } from "./contexts/ItemContext";
+import { useThemeContext, useItemContext } from "./contexts";
 
 export const AppContent = () => {
   const { theme } = useThemeContext();

@@ -4,8 +4,10 @@ import { renderLog } from "../utils";
 
 export const Header: React.FC = memo(() => {
   renderLog("Header rendered");
+
   const { theme, toggleTheme } = useThemeContext();
   const { user, login, logout } = useAuthContext();
+
   const handleLogin = () => {
     // 실제 애플리케이션에서는 사용자 입력을 받아야 합니다.
     login("user@example.com", "password");

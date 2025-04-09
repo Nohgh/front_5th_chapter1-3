@@ -11,5 +11,6 @@ export const useItems = () => {
       ...generateItems(1000, prevItems.length),
     ]);
   }, []);
+
   return { items, addItems };
 };

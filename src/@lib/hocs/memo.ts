@@ -12,6 +12,7 @@ export function memo<P extends object>(
     if (prevProps && _equals(prevProps, props)) {
       return prevElement;
     }
+
     const element = createElement(Component, props);
     prevProps = props;
     prevElement = element;

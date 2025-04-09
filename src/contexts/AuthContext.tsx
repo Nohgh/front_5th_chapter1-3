@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
+import { useMemo } from "../@lib";
 import { User } from "../types";
 import { useNotificationContext } from "./NotificationContext";
-import { useMemo } from "../@lib";
 
 export interface AuthContextType {
   user: User | null;
@@ -35,14 +35,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [user],
   );
+
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const useAuthContext = () => {
   const context = useContext(AuthContext);
+
   if (context === undefined) {
     throw new Error("useAuthContext must be used within an AuthProvider");
   }
+
   return context;
 };

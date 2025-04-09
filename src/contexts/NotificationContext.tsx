@@ -2,12 +2,12 @@ import { createContext, useContext, useState } from "react";
 import { Notification } from "../types";
 import { useCallback } from "../@lib";
 
-export interface NotificationContextType {
+export interface NotificationContext {
   notifications: Notification[];
   addNotification: (message: string, type: Notification["type"]) => void;
   removeNotification: (id: number) => void;
 }
-const NotificationContext = createContext<NotificationContextType | undefined>(
+const NotificationContext = createContext<NotificationContext | undefined>(
   undefined,
 );
 
@@ -48,9 +48,10 @@ export const NotificationProvider = ({
 // eslint-disable-next-line react-refresh/only-export-components
 export const useNotificationContext = () => {
   const context = useContext(NotificationContext);
+
   if (context === undefined) {
     throw new Error(
-      "useNotiContext must be used within an NotificationProvider",
+      "useNotificationContext must be used within an NotificationProvider",
     );
   }
   return context;

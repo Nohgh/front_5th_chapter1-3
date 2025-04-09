@@ -1,6 +1,10 @@
 import { AppContent } from "./AppContent";
-import { AuthProvider, NotificationProvider, ThemeProvider } from "./contexts";
-import { ItemProvider } from "./contexts/ItemContext";
+import {
+  AuthProvider,
+  NotificationProvider,
+  ThemeProvider,
+  ItemProvider,
+} from "./contexts";
 
 const App: React.FC = () => {
   return (
