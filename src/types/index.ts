@@ -1,3 +1,3 @@
-export * from "./ItemType.ts";
-export * from "./UserType.ts";
-export * from "./NotificationType.ts";
+export * from "./ItemType";
+export * from "./UserType";
+export * from "./NotificationType";
