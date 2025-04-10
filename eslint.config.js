@@ -27,7 +27,7 @@ export default tseslint.config(
       ],
       "prettier/prettier": [
         "error",
-        { endofLine: "auto", tarilingComma: "all" },
+        { endOfLine: "auto", tarilingComma: "all" },
       ],
     },
   },
