@@ -16,12 +16,12 @@
     "lint:report": "eslint -o eslint-report",
     "prettier:write": "prettier --write ./src",
     "preview": "vite preview",
+    "deploy": "pnpm run build && gh-pages -d dist",
     "test": "vitest",
     "test:basic": "vitest basic",
     "test:advanced": "vitest advanced",
     "test:ui": "vitest --ui",
-    "prepare": "husky",
-    "deploy": "gh-pages -d dist"
+    "prepare": "husky"
   },
   "dependencies": {
     "gh-pages": "^6.3.0",
